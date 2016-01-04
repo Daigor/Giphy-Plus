@@ -1,0 +1,24 @@
+{
+  "name": "2015-11-solo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daigor/2015-11-solo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Daigor/2015-11-solo/issues"
+  },
+  "homepage": "https://github.com/Daigor/2015-11-solo#readme",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-ui-router": "^0.2.15",
+    "giphy-api": "^1.1.11"
+  }
+}

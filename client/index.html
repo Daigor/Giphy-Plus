@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app='random' ng-controller='animalControl'>
+  <head>
+    <meta charset="utf-8" />
+    <title>Giphy Plus</title>
+    <link rel="stylesheet" type="text/css" href="../style/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <h1>Giphy Plus</h1>
+    <img ng-src="{{ imageFilePath }}" />
+    <br>
+    <h2>{{ display }} </h2>
+ <!--    <div class='navigation'>
+      <ul>
+        <li><a href='#/links' class='index'>All Links</a></li>
+        <li><a href='#/shorten' class='create'>Shorten</a></li>
+        <li><a href='/logout'>Log Out</a></li>
+      </ul>
+    </div> -->
+    <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
+    <button ng-click="random()">Get an animal</button>
+    <button ng-click="verb()">Make it do something</button>
+    <button ng-click"sound()">Add some sound</button> 
+    <div ng-view></div>
+  </body>
+</html>

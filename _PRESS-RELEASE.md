@@ -18,27 +18,29 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+Giphy Plus
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-
+Making your Giphy's more extraordinary
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-
+Ever wish you could take your randomly generated Giphy even further? With this simple application, make your giphy's come to life and even give it some sound. 
 ## Problem ##
   > Describe the problem your product solves.
-
+Attempting to make giphys even more fun and add a little bit of volume.
 ## Solution ##
   > Describe how your product elegantly solves the problem.
-
+  You click a button, you get a random animal. You can then make the random animal do something. Last but not least, you can give it some sound!
 ## Quote from You ##
   > A quote from a spokesperson in your company.
-
+  We are not responsible for any inappropriate giphys that occur via this app. This can all be blamed on the Giphy api search engine. Thank you.
 ## How to Get Started ##
   > Describe how easy it is to get started.
-
+  Just click where it says.. click.
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-
+  Always a good laugh, you're never sure whats going to come next!
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  3D Giphys. whoa
