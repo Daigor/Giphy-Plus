@@ -1,0 +1,21 @@
+{
+  "name": "2015-11-solo",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Allan Trinh <daigortrinh@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Daigor/2015-11-solo",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-audio": "~1.7.1"
+  }
+}

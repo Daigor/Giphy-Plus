@@ -1,7 +1,9 @@
 
-angular.module('random',[])
-
-.controller('animalControl', function($scope, animalGiphy){
+angular.module('app', ['ngAudio'])
+.controller('animalAudio', function($scope, ngAudio){
+  $scope.audio = ngAudio.load('test.mp3');
+})
+.controller('animalControl', function($scope, animalGiphy, ngAudio){
   $scope.display= ''
   $scope.imageFilePath = ''
   var animal = false;
@@ -30,10 +32,10 @@ angular.module('random',[])
           alert('Pick a new animal, ' + data.animal + ' cant ' + data.animalAction);
         }
       });
-    } else if(!animal){
-      alert('Pick an animal!');
-    } else {
+    } else if(!animal && verb){
       alert('The animal can only do so much, stop abusing it')
+    } else {
+      alert('Pick an animal!');
     }
     verb = true;
     animal = false; 
@@ -45,13 +47,12 @@ angular.module('random',[])
 
 .factory('animalGiphy', function($http){
   var animals = ['dog','horse','cat','tiger','unicorn','bear','panda', 'bird', 'fish'];
-  var animalAction = ['jump', 'circle', 'soar', 'fly', 'swim', 'run'];
+  var animalAction = ['jump', 'fly', 'swim', 'run', 'sleep', 'laugh'];
   var params = {};
   params.api_key = 'dc6zaTOxFJmzC';
   params.q = '';
   params.limit = 100;
-  // var key = '&api_key=dc6zaTOxFJmzC';
-  // var search = 'http://api.giphy.com/v1/gifs/search?q='
+
   var get = function(){
     var randomAnimal = animals[Math.floor(Math.random()*animals.length)];
     params.q = "funny+" + randomAnimal;
