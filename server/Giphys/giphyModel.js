@@ -2,8 +2,9 @@ var mongoose = require('mongoose')
 
 var giphySchema = new mongoose.Schema({
   user: String,
-  giphy: Array,
-  sound: Array
+  giphy: String,
+  sound: String,
+  description: String
 })
 
 module.exports = mongoose.model('Giphy', giphySchema);

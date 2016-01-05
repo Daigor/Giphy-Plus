@@ -16,3 +16,14 @@ h2{
   margin-right: auto;
   margin-left: auto;
 }
+
+.save{
+  font-size: 40px;
+  color: blue;
+}
+.nyan {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: red;
+}

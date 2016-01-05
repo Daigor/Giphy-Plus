@@ -3,18 +3,40 @@ angular.module('app', ['ngAudio'])
 .controller('animalControl', function($scope, animalGiphy, ngAudio, audiomicro){
   $scope.display= '';
   $scope.imageFilePath = '';
-  $scope.audiofile = audioUrl;
+  $scope.audiofile = '';
+  $scope.saved = [];
   $scope.audio = ngAudio.load('http://www.freesound.org/data/previews/178/178878_1648170-lq.mp3');
   var animal = false;
   var verb = false;
   $scope.giphySave = function(){
-    animalGiphy.save($scope.imageFilePath).then(function(data){
-      console.log('posted');
+    var data = {};
+    var description = $scope.display;
+    data.description = description;
+    data.giphy = $scope.imageFilePath;
+    data.sound = $scope.audiofile;
+    animalGiphy.save(data).then(function(data){
+      animalGiphy.update().then(function(data){
+          $scope.saved = data;
+      })
     });
-
   }
-  $scope.soundSave = function(){
-
+  $scope.nyancat = function(){
+    $scope.audio.stop();
+    var nyancat = 'http://i.giphy.com/LfbLBInuSRynK.gif';
+    $scope.display = "NYAN CAT";
+    $scope.imageFilePath = nyancat;
+    $scope.audiofile = 'nyancat.mp3';
+    $scope.audio = ngAudio.load('nyancat.mp3');
+    $scope.audio.play();
+  }
+  $scope.setGiphy = function(idx){
+    $scope.audio.stop();
+    var obj = $scope.saved[idx];
+    $scope.display = obj.description;
+    $scope.audiofile = obj.sound;
+    $scope.imageFilePath = obj.giphy;
+    $scope.audio = ngAudio.load(obj.sound);
+    $scope.audio.play();
   }
   $scope.random = function(){
     animalGiphy.get().then(function(data){
@@ -70,6 +92,11 @@ angular.module('app', ['ngAudio'])
   params.q = '';
   params.limit = 100;
 
+  var update = function(){
+    return $http.get('/api/giphy').then(function(res){
+      return res.data;
+    })
+  }
   var get = function(){
     var randomAnimal = animals[Math.floor(Math.random()*animals.length)];
     params.q = "funny+" + randomAnimal;
@@ -91,9 +118,9 @@ angular.module('app', ['ngAudio'])
       return 'failed';
     })
   };
-  var save = function(animal){
+  var save = function(data){
     
-    return $http.post('/api/giphy', animal).then(function(res){
+    return $http.post('/api/giphy', data).then(function(res){
       return res.data;
     })
   }
@@ -101,7 +128,8 @@ angular.module('app', ['ngAudio'])
   return {
     get: get,
     verb: verb,
-    save: save
+    save: save,
+    update, update
   }
 })
 .factory('audiomicro', function($http){
