@@ -1,11 +1,21 @@
 
 angular.module('app', ['ngAudio'])
 .controller('animalControl', function($scope, animalGiphy, ngAudio, audiomicro){
-  $scope.display= ''
-  $scope.imageFilePath = ''
+  $scope.display= '';
+  $scope.imageFilePath = '';
+  $scope.audiofile = audioUrl;
   $scope.audio = ngAudio.load('http://www.freesound.org/data/previews/178/178878_1648170-lq.mp3');
   var animal = false;
   var verb = false;
+  $scope.giphySave = function(){
+    animalGiphy.save($scope.imageFilePath).then(function(data){
+      console.log('posted');
+    });
+
+  }
+  $scope.soundSave = function(){
+
+  }
   $scope.random = function(){
     animalGiphy.get().then(function(data){
       var randomIndex = Math.floor(Math.random()*data.length);
@@ -18,11 +28,12 @@ angular.module('app', ['ngAudio'])
     animal = true;
     verb = false;
   }
-  $scope.test = function(){
+  $scope.soundbyte = function(){
     $scope.audio.stop();
     if($scope.display){
       audiomicro.getAudio($scope.display.split(' ')[0]).then(function(data){
         var audioUrl = data.data.previews['preview-lq-mp3'];
+        $scope.audiofile = audioUrl;
         $scope.audio = ngAudio.load(audioUrl);
         $scope.audio.play();
       });
@@ -49,9 +60,7 @@ angular.module('app', ['ngAudio'])
     verb = true;
     animal = false; 
   }
-  $scope.describe = function(){
-
-  }
+  
 })
 .factory('animalGiphy', function($http){
   var animals = ['dog','horse','cat','tiger','unicorn','bear','panda', 'bird', 'fish'];
@@ -68,7 +77,7 @@ angular.module('app', ['ngAudio'])
       res.data.data.animal = randomAnimal;
       return res.data.data;
     })
-  } 
+  };
   var verb = function(animal){
   
     var randomVerb = animalAction[Math.floor(Math.random()*animalAction.length)];
@@ -81,22 +90,30 @@ angular.module('app', ['ngAudio'])
     }, function(res){
       return 'failed';
     })
+  };
+  var save = function(animal){
+    
+    return $http.post('/api/giphy', animal).then(function(res){
+      return res.data;
+    })
   }
+
   return {
     get: get,
-    verb: verb 
+    verb: verb,
+    save: save
   }
 })
 .factory('audiomicro', function($http){
   var sounds = {
     dog: 'bark',
-    horse : '',
-    cat : '',
-    tiger : '',
+    horse : 'neigh',
+    cat : 'meow',
+    tiger : 'roar',
     unicorn : '',
-    bear : '',
+    bear : 'roar',
     panda : '',
-    bird : '',
+    bird : 'chirp',
     fish : ''
   }
   var params = {};
@@ -107,7 +124,7 @@ angular.module('app', ['ngAudio'])
     //'http://www.freesound.org/apiv2/search/text/?query=piano' res.data.results is an array
     //get id from each array and then do another query
     //'http://www.freesound.org/apiv2/sounds/id'
-    return $http.get('http://www.freesound.org/apiv2/search/text/?query=' + animal, {params:params}).then(function(res){
+    return $http.get('http://www.freesound.org/apiv2/search/text/?query=' + animal + "+" + sounds[animal.toLowerCase()], {params:params}).then(function(res){
       var array = res.data.results;
       var randomId = array[Math.floor(Math.random()*array.length)].id
       // var randomId = array[0].id;
