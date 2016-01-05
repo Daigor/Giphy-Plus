@@ -1,0 +1,24 @@
+<div id='signin'>
+  <h1>signin</h1>
+  <form name="signinForm" ng-submit='signin()' ng-disabled="signinForm.$invalid">
+    <input name ='username'
+      type='text' 
+      ng-model='user.username' 
+      required 
+      ng-minlength="3" 
+      ng-maxlength='8'>
+    <input name='password'
+      type="password" 
+      ng-model='user.password' 
+      required 
+      ng-minlength="3"
+      ng-maxlength="8">
+    <button>signin</button>
+  </form>
+  <a href="#/signup">Don't have an account? <strong>Signup</strong> ...</a>
+  <br>
+  <span ng-show="signinForm.username.$invalid && !signinForm.username.$pristine">Enter a valid username</span>
+  <br>
+  <span ng-show="signinForm.password.$invalid && !signinForm.password.$pristine">Enter a password username</span>
+</div>
+
