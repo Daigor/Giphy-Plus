@@ -1,4 +1,4 @@
-<div id='signin'>
+<div id='signin' ng-controller='login'>
   <h1>signin</h1>
   <form name="signinForm" ng-submit='signin()' ng-disabled="signinForm.$invalid">
     <input name ='username'
@@ -7,7 +7,7 @@
       required 
       ng-minlength="3" 
       ng-maxlength='8'>
-    <input name='password'
+    <input name='username'
       type="password" 
       ng-model='user.password' 
       required 

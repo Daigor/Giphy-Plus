@@ -1,4 +1,31 @@
 angular.module('services', [])
+.factory('Auth', function($http){
+  var signup = function(user){
+    return $http({
+      method: "POST",
+      url: '/signup',
+      data: user
+    })
+    .then(function(response){
+      return response
+    })
+  }
+
+  var login = function(user){
+    return $http({
+      method: "POST",
+      url: '/login',
+      data: user
+    })
+    .then(function(response){
+      return response;
+    })
+  }
+  return {
+    login: login,
+    signup: signup
+  }
+})
 .factory('animalGiphy', function($http){
   var animals = ['dog','horse','cat','tiger','unicorn','bear','panda', 'bird', 'fish'];
   var animalAction = ['jump', 'fly', 'swim', 'run', 'sleep', 'laugh'];

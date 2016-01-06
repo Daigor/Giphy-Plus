@@ -1,13 +1,12 @@
 
-angular.module('app', ['ngAudio', 'ui.router', 'services'])
+angular.module('app', ['ngAudio', 'ui.router', 'services', 'auth'])
 .config(function($stateProvider, $urlRouterProvider){
-  $urlRouterProvider.otherwise('/login');
   $stateProvider
     .state('home', {
       url:'/',
       templateUrl: 'home/giphy.html'
     })
-    .state('login', {
+    .state('signin', {
       url:'/login',
       templateUrl: 'login/login.html'
     })
